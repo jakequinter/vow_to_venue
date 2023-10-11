@@ -5,22 +5,25 @@
 (generate_opam_files true)
 
 (source
- (github username/reponame))
+ (github jakequinter/vow_to_venue))
 
-(authors "Author Name")
+(authors "Jake Quinter")
 
-(maintainers "Maintainer Name")
+(maintainers "Jake Quinter")
 
-(license LICENSE)
+(license MIT)
 
 (documentation https://url/to/documentation)
 
 (package
  (name vow_to_venue)
- (synopsis "A short synopsis")
- (description "A longer description")
- (depends ocaml dune)
+ (synopsis "Let's build our own theknot.com")
+ (description "vow_to_venue is a web application that allows users recieve and review RSVPs for their wedding")
+ (depends
+   (ocaml (>= "5.1.0"))
+   (dune (>= "3.11.0"))
+   dream
+   )
  (tags
   (topics "to describe" your project)))
-
-; See the complete stanza docs at https://dune.readthedocs.io/en/stable/dune-files.html#dune-project
+; 

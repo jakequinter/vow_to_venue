@@ -1,4 +1,4 @@
 (executable
  (public_name vow_to_venue)
  (name main)
- (libraries vow_to_venue))
+ (libraries vow_to_venue dream))
