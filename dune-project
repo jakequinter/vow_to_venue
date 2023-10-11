@@ -23,6 +23,7 @@
    (ocaml (>= "5.1.0"))
    (dune (>= "3.11.0"))
    dream
+   tyxml
    )
  (tags
   (topics "to describe" your project)))
