@@ -29,3 +29,11 @@ setup.log
 # Local OPAM switch
 _opam/
 
+dist/
+build/
+.sl/
+.git/
+node_modules/
+.DS_Store
+**/dist
+**/build

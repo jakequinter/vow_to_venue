@@ -12,9 +12,12 @@ doc: "https://url/to/documentation"
 bug-reports: "https://github.com/jakequinter/vow_to_venue/issues"
 depends: [
   "ocaml" {>= "5.1.0"}
-  "dune" {>= "3.11" & >= "3.11.0"}
-  "dream"
-  "tyxml"
+  "dune" {>= "3.11" & >= "3.11"}
+  "melange" {>= "2.1.0"}
+  "opam-check-npm-deps"
+  "reason" {>= "3.10.0"}
+  "reason-react" {>= "0.13.0"}
+  "reason-react-ppx"
   "odoc" {with-doc}
 ]
 build: [
