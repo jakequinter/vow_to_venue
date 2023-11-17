@@ -1,1 +1,23 @@
 (dirs :standard \ node_modules)
+
+(melange.emit
+  (target build)
+  (alias vow_to_venue)
+  (emit_stdlib true)
+  (libraries app)
+  (promote (until-clean))
+  (module_systems es6))
+
+(rule
+ (alias vite)
+ (deps
+  (alias_rec vow_to_venue)
+  (:vite_config ./vite.config.js)
+  (:pkg_json ./package.json)
+  (:index_html ./index.html))
+ (targets
+  (dir dist))
+ (action
+  (run bun run vite-build))
+ (mode
+  (promote (until-clean))))

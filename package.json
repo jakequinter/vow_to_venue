@@ -1,0 +1,23 @@
+{
+  "name": "vow-to-venue",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "vite-build": "vite build",
+    "vite-preview": "vite preview"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": { 
+    "@rollup/plugin-node-resolve": "^15.2.3", 
+    "vite": "^5.0.0" 
+  }
+}
