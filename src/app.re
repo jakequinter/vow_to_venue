@@ -1,6 +1,33 @@
-module App = {
+open ReasonReactRouter;
+
+module Home = {
   [@react.component]
-  let make = () => <h1>{React.string("Hello, world!!")}</h1>;
+  let make = () => <a href="/about">{"About"->React.string}</a>;
+}
+
+module About = {
+
+  [@react.component]
+  let make = () => <h1>{React.string("Yoooo we have routing sir!")}</h1>;
+}
+
+module App = {
+type route =
+  | Home
+  | About;
+
+[@react.component]
+let make = () => {
+  let url = ReasonReactRouter.useUrl();
+
+  <div>
+    {switch (url.path) {
+     | [] => <Home />
+     | ["about"] => <About />
+     | _ => <Home />
+     }}
+  </div>;
+};
 };
 
 ReactDOM.querySelector("#root")
@@ -12,3 +39,6 @@ ReactDOM.querySelector("#root")
         "Failed to start React: couldn't find the #root element",
       )
   );
+
+
+
