@@ -1,15 +1,59 @@
-open ReasonReactRouter;
-
 module Home = {
   [@react.component]
-  let make = () => <a href="/about">{"About"->React.string}</a>;
+  let make = () => <a href="/todos">{"View todos"->React.string}</a>;
 }
+
+type todo = {
+  userId: int,
+  id: int,
+  title: string,
+  completed: bool,
+}
+
+module Decode = {
+  let todo = json =>
+    Json.Decode.{
+      userId:    json |> field("userId", int),
+      id:        json |> field("id", int),
+      title:     json |> field("title", string),
+      completed: json |> field("completed", bool),
+    };
+
+  let todos = json => json |> Json.Decode.array(todo);
+};
 
 module About = {
-
   [@react.component]
-  let make = () => <h1>{React.string("Yoooo we have routing sir!")}</h1>;
-}
+  let make = () => {
+    let (todos, setTodos) = React.useState(() => [||]);
+
+    React.useEffect0(() => {
+      let _ = Js.Promise.(
+        Fetch.fetch("https://jsonplaceholder.typicode.com/todos")
+        |> then_(Fetch.Response.json)
+        |> then_(json => {
+            let fetched = Decode.todos(json);
+            setTodos(_ => fetched);
+            Js.Promise.resolve();
+        })
+      );
+      Some(() => ())
+    });
+
+    <>
+      <h1>{React.string("Todos")}</h1>
+      <ul>
+        {
+          todos
+          ->Belt.Array.map(item =>
+              <li key={string_of_int(item.id)}> {React.string(item.title)} </li>
+            )
+          ->React.array
+        }
+      </ul>
+    </>
+  }
+};
 
 module App = {
 type route =
@@ -23,7 +67,7 @@ let make = () => {
   <div>
     {switch (url.path) {
      | [] => <Home />
-     | ["about"] => <About />
+     | ["todos"] => <About />
      | _ => <Home />
      }}
   </div>;
