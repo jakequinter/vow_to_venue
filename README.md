@@ -23,4 +23,4 @@ An exploration into OCaml technologies
     - [x] create user
 ### Server
 - [x] create user
-- [ ] separate out routes
+- [x] separate out routes

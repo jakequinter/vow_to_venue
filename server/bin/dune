@@ -1,10 +1,6 @@
 (executable
  (public_name server)
  (name main)
- (libraries server
-   caqti-driver-sqlite3   
-   dream
-   lwt cohttp-lwt-unix
-   sqlite3
-   tyxml
-   yojson))
+ (libraries 
+   server
+   routes))
