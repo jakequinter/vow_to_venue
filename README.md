@@ -15,3 +15,10 @@ An exploration into OCaml technologies
 * `dune build`
 * `bun run dev`
 
+## TODO
+### Client
+- [ ] get started button to redirect to `/get-started`
+    - [ ] form to collect user info
+    - [ ] create user
+### Server
+- [ ] create user
