@@ -15,13 +15,11 @@ module App = {
   let make = () => {
     let url = ReasonReactRouter.useUrl();
 
-    <div>
-      {switch (url.path) {
-       | [] => <Home />
-       | ["get-started"] => <GetStarted />
-       | _ => <FourOhFour />
-       }}
-    </div>;
+    {switch (url.path) {
+     | [] => <Home />
+     | ["get-started"] => <GetStarted />
+     | _ => <FourOhFour />
+     }}
   };
 };
 
