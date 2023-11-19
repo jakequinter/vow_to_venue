@@ -1,41 +1,6 @@
-; ; `melange.emit` creates build rules to convert source code into JavaScript using the Melange compiler.
-; ; For more details, visit: https://dune.readthedocs.io/en/stable/melange.html#melange-emit
-; (melange.emit
-;
-;  ; `target`: Specifies the folder in `_build/default` where the JavaScript files will be saved.
-;  ; You can use multiple `melange.emit` sections if you wish to produce different outputs, like ES6 and CommonJS, from the same source code.
-;  (target output)
-;
-;  ; `alias`: Helps in building specific artifacts. Use `dune build @ghostty_configurator` to build using this alias.
-;  ; If you don't provide an `alias`, the default one named `melange` will be used.
-;  (alias vow_to_venue)
-;
-;  ; `libraries`: These are the dependencies. Dune will create rules to convert the modules in these libraries into JavaScript.
-;  ; Note: Specify libraries using `(modes melange)`.
-;  (libraries reason-react melange.belt)
-;
-;  ; `modules`: Defines which modules to include. By default, all modules in the folder are included.
-;  ; The below line excludes the `hello` module.
-;  ; More on this at: https://dune.readthedocs.io/en/stable/reference/predicate-language.html#predicate-language
-;  (modules :standard )
-;
-;  ; Uncomment the line below to save the generated JavaScript files in the source directory.
-;  ; (promote (until-clean))
-;
-;  (preprocess
-;   ; `pps`: Lists the preprocessors to use before creating the JavaScript.
-;   ; `melange.ppx` lets you use Melange attributes [@mel. ...]. More details: https://melange.re/v2.0.0/communicate-with-javascript/#attributes
-;   ; `reason-react-ppx` enables JSX for ReasonReact components. More info: https://reasonml.github.io/docs/en/jsx
-;   (pps melange.ppx reason-react-ppx))
-;
-;  ; `module_systems`: Choose the type of module system(s) for your code, like es6 or commonjs.
-;  ; To generate for both, use: (module_systems es6 commonjs)
-;  ; More on this: https://melange.re/v2.0.0/build-system/#commonjs-or-es6-modules
-;  (module_systems es6))
-
 (library
  (name app)
  (modes melange)
- (libraries reason-react melange.belt melange-fetch melange-json)
+ (libraries reason-react melange.belt melange-fetch melange-json pages)
  (preprocess
   (pps melange.ppx reason-react-ppx)))

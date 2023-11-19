@@ -17,8 +17,10 @@ An exploration into OCaml technologies
 
 ## TODO
 ### Client
-- [ ] get started button to redirect to `/get-started`
-    - [ ] form to collect user info
-    - [ ] create user
+- [x] separate out routes
+- [x] get started button to redirect to `/get-started`
+    - [x] form to collect user info
+    - [x] create user
 ### Server
-- [ ] create user
+- [x] create user
+- [ ] separate out routes
