@@ -17,6 +17,7 @@ An exploration into OCaml technologies
 
 ## TODO
 ### Client
+- [ ] Setup Tailwind
 - [x] separate out routes
 - [x] get started button to redirect to `/get-started`
     - [x] form to collect user info
