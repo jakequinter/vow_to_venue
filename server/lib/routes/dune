@@ -1,0 +1,10 @@
+(library
+ (name routes)
+ (libraries 
+   server 
+   caqti-driver-sqlite3   
+   dream
+   lwt cohttp-lwt-unix
+   sqlite3
+   tyxml
+   yojson))
