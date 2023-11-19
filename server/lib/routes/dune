@@ -1,10 +1,12 @@
 (library
  (name routes)
- (libraries 
+ (libraries ppx_rapper_lwt
    server 
+   caqti-lwt
    caqti-driver-sqlite3   
    dream
    lwt cohttp-lwt-unix
    sqlite3
    tyxml
-   yojson))
+   yojson)
+   (preprocess (pps ppx_rapper)))
