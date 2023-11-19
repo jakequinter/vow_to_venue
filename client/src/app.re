@@ -1,61 +1,15 @@
+open Pages
+
 module Home = {
   [@react.component]
-  let make = () => <a href="/users"> "View users"->React.string </a>;
+  let make = () => <a href="/get-started"> "Get started"->React.string </a>;
 };
 
-type user = {
-  id: int,
-  name: string,
-};
-
-module Decode = {
-  let user = json =>
-    Json.Decode.{
-      id: json |> field("id", int),
-      name: json |> field("name", string),
-    };
-
-  let users = json => json |> Json.Decode.array(user);
-};
-
-module Users = {
-  [@react.component]
-  let make = () => {
-    let (users, setUsers) = React.useState(() => [||]);
-
-    React.useEffect0(() => {
-      let _ =
-        Js.Promise.(
-          Fetch.fetch("http://localhost:8080/users")
-          |> then_(Fetch.Response.json)
-          |> then_(json => {
-               let fetched = Decode.users(json);
-               setUsers(_ => fetched);
-               Js.Promise.resolve();
-             })
-        );
-      Some(() => ());
-    });
-
-    <>
-      <h1> {React.string("Users fetched from local DB")} </h1>
-      <ul>
-        {users
-         ->Belt.Array.map(user =>
-             <li key={string_of_int(user.id)}>
-               {React.string(user.name)}
-             </li>
-           )
-         ->React.array}
-      </ul>
-    </>;
-  };
-};
 
 module App = {
   type route =
     | Home
-    | About;
+    | GetStarted;
 
   [@react.component]
   let make = () => {
@@ -64,8 +18,8 @@ module App = {
     <div>
       {switch (url.path) {
        | [] => <Home />
-       | ["users"] => <Users />
-       | _ => <Home />
+       | ["get-started"] => <GetStarted />
+       | _ => <FourOhFour />
        }}
     </div>;
   };
