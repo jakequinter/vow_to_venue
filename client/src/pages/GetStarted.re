@@ -23,7 +23,7 @@ let createUser = event => {
         (),
       ),
     )
-    |> then_(json => {
+    |> then_(_ => {
       Js.Console.log("User created");
       Js.Promise.resolve();
     })
