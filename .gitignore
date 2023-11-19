@@ -38,3 +38,6 @@ node_modules/
 **/dist
 **/build
 _esy/
+
+# db
+vow.db
