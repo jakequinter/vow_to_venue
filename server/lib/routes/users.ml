@@ -36,6 +36,8 @@ let post_users_request pool request =
   let* body = Dream.body request in
   let data = Yojson.Safe.from_string body in
   let open Yojson.Safe.Util in
+  let email = data |> member "email" |> to_string in
+  let password = data |> member "password" |> to_string in
   let bride_first_name = data |> member "bride_first_name" |> to_string in
   let bride_last_name = data |> member "bride_last_name" |> to_string in
   let groom_first_name = data |> member "groom_first_name" |> to_string in
@@ -46,16 +48,16 @@ let post_users_request pool request =
     [%rapper
       execute
         {sql|
-           INSERT INTO users (bride_first_name, bride_last_name, groom_first_name, groom_last_name)
-           VALUES (%string{bride_first_name}, %string{bride_last_name}, %string{groom_first_name}, %string{groom_last_name})
+           INSERT INTO users (email, password, bride_first_name, bride_last_name, groom_first_name, groom_last_name)
+           VALUES (%string{email}, %string{password}, %string{bride_first_name}, %string{bride_last_name}, %string{groom_first_name}, %string{groom_last_name})
         |sql}]
   in
 
   let* result =
     Caqti_lwt.Pool.use
       (fun db ->
-        insert_user ~bride_first_name ~bride_last_name ~groom_first_name
-          ~groom_last_name db)
+        insert_user ~email ~password ~bride_first_name ~bride_last_name
+          ~groom_first_name ~groom_last_name db)
       pool
   in
 
